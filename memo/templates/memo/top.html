@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="welcome">
+    <h1 class="title">メモ一覧</h1>
+    <p class="subtitle">情報共有しよう</p>
+    <a class="btn btn-primary" href="{% url 'memo_new' %}">メモを追加する</a>
+</div>
+
+{% if memo %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>投稿者</th>
+            <th>投稿日</th>
+            <th>タイトル</th>
+        </tr>
+        <tr>
+            <th colspan="3">メモ</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for m in memo %}
+        <tr>
+            <th>{{ m.created_by.username }}</th>
+            <th>{{ m.created_at }}</th>
+            <th><a href="{% url 'memo_detail' m.id %}">{{ m.title }}</a></th>
+        </tr>
+        <tr>
+            <th colspan="3">{{ m.desc }}</th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>メモはありません</p>
+{% endif %}
+{% endblock %}
