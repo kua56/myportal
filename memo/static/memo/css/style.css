@@ -10,3 +10,7 @@ main {
     display: flex;
     flex-direction: column;
 }
+
+.memo_date {
+    margin-bottom: 1rem;
+}

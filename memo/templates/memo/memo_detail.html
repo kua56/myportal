@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block main %}
+<h2>{{ memo.title }} by {{ memo.created_by.username }}</h2>
+<div class="memo-date">
+    投稿日：{{ memo.created_at|date:"DATETIME_FORMAT"}}
+    {% if user.is_authenticated and memo.created_by_id == user.id %}
+    <a href="{% url 'memo_edit' memo.id %}"">編集</a>
+    {% endif %}
+</div>
+<p>{{ memo.desc }}</p>
+{% endblock %}
